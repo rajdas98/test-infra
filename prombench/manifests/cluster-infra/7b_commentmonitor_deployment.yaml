@@ -23,7 +23,7 @@ spec:
         name: comment-monitor
         env:
         - name: DOMAIN_NAME
-          value: {{ .DOMAIN_NAME }}
+          value: prometheus.rajdas.in
         - name: LABEL_NAME
           value: prombench
         - name: GITHUB_TOKEN

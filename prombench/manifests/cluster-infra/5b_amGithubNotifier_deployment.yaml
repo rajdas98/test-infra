@@ -18,8 +18,8 @@ spec:
       - name: amgithubnotifier
         image: docker.io/prominfra/amgithubnotifier:master
         args:
-        - "--org={{ .GITHUB_ORG }}"
-        - "--repo={{ .GITHUB_REPO }}"
+        - "--org=prometheus"
+        - "--repo=prometheus"
         volumeMounts:
         - name: oauth
           mountPath: /etc/github

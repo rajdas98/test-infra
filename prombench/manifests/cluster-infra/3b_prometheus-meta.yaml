@@ -22,9 +22,9 @@ data:
         expr: floor((time() - kube_namespace_created{namespace=~"prombench-[0-9]+"})/(60*60*24)) >= 3
         labels:
           severity: info
-          prNum: '{{"{{"}} $labels.prNum {{"}}"}}'
-          org: {{ .GITHUB_ORG }}
-          repo: {{ .GITHUB_REPO }}
+          prNum: 7214
+          org: prometheus
+          repo: prometheus
         annotations:
           description: >
             Benchmark tests are running for {{"{{"}} $value {{"}}"}} days!
@@ -207,7 +207,7 @@ spec:
         - "--storage.tsdb.path=/data"
         - "--storage.tsdb.retention.size=500GB"  # 50% of the total storage available.
         - "--web.enable-lifecycle"
-        - "--web.external-url=http://{{ .DOMAIN_NAME }}/prometheus-meta"
+        - "--web.external-url=http://prombench.rajdas.in/prometheus-meta"
         name: prometheus
         volumeMounts:
         - name: config-volume
