@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: prometheus-loadgen
-  namespace: prombench-{{ .PR_NUMBER }}
+  namespace: prombench-7214
 data:
   config.yaml: |
     querier:
@@ -53,7 +53,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: prometheus-loadgen-scaler
-  namespace: prombench-{{ .PR_NUMBER }}
+  namespace: prombench-7214
 spec:
   replicas: 1
   selector:
@@ -61,7 +61,7 @@ spec:
       app: loadgen-scaler
   template:
     metadata:
-      namespace: prombench-{{ .PR_NUMBER }}
+      namespace: prombench-7214
       labels:
         app: loadgen-scaler
     spec:
@@ -75,7 +75,7 @@ spec:
         - "-f"
         - "/etc/scaler/webserver.yaml"
         - "-v"
-        - "PR_NUMBER:{{ .PR_NUMBER }}"        #Used to specify fake-webserver's namespace
+        - "PR_NUMBER:7214}"        #Used to specify fake-webserver's namespace
         - "10"                                #Scale Up replicas
         - "1"                                 #Scale Down replicas
         - "15m"                               #Sleep Interval between scaling
@@ -87,14 +87,14 @@ spec:
         configMap:
           name: fake-webserver-config-for-scaler
       nodeSelector:
-        cloud.google.com/gke-nodepool: nodes-{{ .PR_NUMBER }}
+        cloud.google.com/gke-nodepool: nodes-7214}
         isolation: none
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: prometheus-loadgen-querier
-  namespace: prombench-{{ .PR_NUMBER }}
+  namespace: prombench-7214
 spec:
   replicas: 1
   selector:
@@ -102,7 +102,7 @@ spec:
       app: loadgen-querier
   template:
     metadata:
-      namespace: prombench-{{ .PR_NUMBER }}
+      namespace: prombench-7214
       labels:
         app: loadgen-querier
     spec:
@@ -111,8 +111,8 @@ spec:
         image: docker.io/prominfra/load-generator:master
         imagePullPolicy: Always
         args:
-        - "prombench-{{ .PR_NUMBER }}"
-        - "{{ .PR_NUMBER }}"
+        - "prombench-7214"
+        - "7214}"
         env:
         - name: DOMAIN_NAME
           value: "{{ .DOMAIN_NAME }}"
@@ -127,14 +127,14 @@ spec:
         configMap:
           name: prometheus-loadgen
       nodeSelector:
-        cloud.google.com/gke-nodepool: nodes-{{ .PR_NUMBER }}
+        cloud.google.com/gke-nodepool: nodes-7214}
         isolation: none
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: prometheus-loadgen-querier
-  namespace: prombench-{{ .PR_NUMBER }}
+  namespace: prombench-7214
   labels:
     app: loadgen-querier
 spec:

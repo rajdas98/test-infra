@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: prometheus-test
-  namespace: prombench-{{ .PR_NUMBER }}
+  namespace: prombench-7214
 data:
   prometheus.yml: |
     global:
@@ -20,7 +20,7 @@ data:
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_node_label_cloud_google_com_gke_nodepool]
-        regex: prometheus-{{ .PR_NUMBER }}|nodes-{{ .PR_NUMBER }}
+        regex: prometheus-7214|nodes-7214
       - action: labelmap
         regex: __meta_kubernetes_node_label_(.+)
       - target_label: __address__
@@ -35,7 +35,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -52,7 +52,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -65,7 +65,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -78,7 +78,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -91,7 +91,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -104,7 +104,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -117,7 +117,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -130,7 +130,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -143,7 +143,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -156,7 +156,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -169,7 +169,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -182,7 +182,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -195,7 +195,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -208,7 +208,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -221,7 +221,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -234,7 +234,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -247,7 +247,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -260,7 +260,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -273,7 +273,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -286,7 +286,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -299,7 +299,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -312,7 +312,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -325,7 +325,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -338,7 +338,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -351,7 +351,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -364,7 +364,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -377,7 +377,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -390,7 +390,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -403,7 +403,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -416,7 +416,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -429,7 +429,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -442,7 +442,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -455,7 +455,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -468,7 +468,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -481,7 +481,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -494,7 +494,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -507,7 +507,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -520,7 +520,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -533,7 +533,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -546,7 +546,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -559,7 +559,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -572,7 +572,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -585,7 +585,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -598,7 +598,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -611,7 +611,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -624,7 +624,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -637,7 +637,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -650,7 +650,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -663,7 +663,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -676,7 +676,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]
@@ -689,7 +689,7 @@ data:
       - role: endpoints
         namespaces:
           names:
-            - prombench-{{ .PR_NUMBER }}
+            - prombench-7214
       relabel_configs:
       - action: keep
         source_labels: [__meta_kubernetes_service_label_app]

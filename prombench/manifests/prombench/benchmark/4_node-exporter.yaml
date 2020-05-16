@@ -1,28 +1,28 @@
 # On using Node affinity:
 # 1. node-exporter is deployed on main-node ( DaemonSet )
-# 2. node-exporter is deployed on nodes-{{ .PR_NUMBER }} ( DaemonSet )
-# 3. node-exporter is deployed on prometheus-{{ .PR_NUMBER }} ( Deployment )
-# node-exporter on prometheus-{{ .PR_NUMBER }} is deployed after deploying prometheus to use podAffinity
+# 2. node-exporter is deployed on nodes-7214 ( DaemonSet )
+# 3. node-exporter is deployed on prometheus-7214 ( Deployment )
+# node-exporter on prometheus-7214 is deployed after deploying prometheus to use podAffinity
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: node-exporter-prometheus-test-{{ normalise .RELEASE }}
-  namespace: prombench-{{ .PR_NUMBER }}
+  name: node-exporter-prometheus-test-v2.18.1
+  namespace: prombench-7214
 spec:
   selector:
     matchLabels:
       app: node-exporter
-      node: test-{{ normalise .RELEASE }}
+      node: test-v2.18.1
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 1
     type: RollingUpdate
   template:
     metadata:
-      namespace: prombench-{{ .PR_NUMBER }}
+      namespace: prombench-7214
       labels:
         app: node-exporter
-        node: test-{{ normalise .RELEASE }}
+        node: test-v2.18.1
       name: node-exporter
     spec:
       affinity:
@@ -33,7 +33,7 @@ spec:
               - key: prometheus
                 operator: In
                 values:
-                - test-{{ normalise .RELEASE }}
+                - test-v2.18.1
             topologyKey: cloud.google.com/gke-nodepool
       securityContext:
         runAsNonRoot: true
@@ -41,7 +41,7 @@ spec:
       hostNetwork: true
       hostPID: true
       nodeSelector:
-        cloud.google.com/gke-nodepool: prometheus-{{ .PR_NUMBER }}
+        cloud.google.com/gke-nodepool: prometheus-7214
       containers:
       - image: quay.io/prometheus/node-exporter:v0.16.0
         args:
@@ -73,23 +73,23 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: node-exporter-prometheus-test-pr-{{ .PR_NUMBER }}
-  namespace: prombench-{{ .PR_NUMBER }}
+  name: node-exporter-prometheus-test-pr-7214
+  namespace: prombench-7214
 spec:
   selector:
     matchLabels:
       app: node-exporter
-      node: test-pr-{{ .PR_NUMBER }}
+      node: test-pr-7214
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 1
     type: RollingUpdate
   template:
     metadata:
-      namespace: prombench-{{ .PR_NUMBER }}
+      namespace: prombench-7214
       labels:
         app: node-exporter
-        node: test-pr-{{ .PR_NUMBER }}
+        node: test-pr-7214
       name: node-exporter
     spec:
       affinity:
@@ -100,7 +100,7 @@ spec:
               - key: prometheus
                 operator: In
                 values:
-                - test-pr-{{ .PR_NUMBER }}
+                - test-pr-7214
             topologyKey: cloud.google.com/gke-nodepool
       securityContext:
         runAsNonRoot: true
@@ -108,7 +108,7 @@ spec:
       hostNetwork: true
       hostPID: true
       nodeSelector:
-        cloud.google.com/gke-nodepool: prometheus-{{ .PR_NUMBER }}
+        cloud.google.com/gke-nodepool: prometheus-7214
       containers:
       - image: quay.io/prometheus/node-exporter:v0.16.0
         args:
@@ -141,7 +141,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: node-exporter-nodes
-  namespace: prombench-{{ .PR_NUMBER }}
+  namespace: prombench-7214
 spec:
   selector:
     matchLabels:
@@ -153,7 +153,7 @@ spec:
     type: RollingUpdate
   template:
     metadata:
-      namespace: prombench-{{ .PR_NUMBER }}
+      namespace: prombench-7214
       labels:
         app: node-exporter
         node: web-server
@@ -165,7 +165,7 @@ spec:
       hostNetwork: true
       hostPID: true
       nodeSelector:
-        cloud.google.com/gke-nodepool: nodes-{{ .PR_NUMBER }}
+        cloud.google.com/gke-nodepool: nodes-7214
       containers:
       - image: quay.io/prometheus/node-exporter:v0.16.0
         args:
@@ -198,7 +198,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: node-exporter
-  namespace: prombench-{{ .PR_NUMBER }}
+  namespace: prombench-7214
   labels:
     app: node-exporter
     monitored: "true"

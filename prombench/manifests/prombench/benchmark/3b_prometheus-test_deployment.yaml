@@ -1,23 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prometheus-test-pr-{{ .PR_NUMBER }}
-  namespace: prombench-{{ .PR_NUMBER }}
+  name: prometheus-test-pr-7214
+  namespace: prombench-7214
   labels:
     app: prometheus
-    prometheus: test-pr-{{ .PR_NUMBER }}
+    prometheus: test-pr-7214
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: prometheus
-      prometheus: test-pr-{{ .PR_NUMBER }}
+      prometheus: test-pr-7214
   template:
     metadata:
-      namespace: prombench-{{ .PR_NUMBER }}
+      namespace: prombench-7214
       labels:
         app: prometheus
-        prometheus: test-pr-{{ .PR_NUMBER }}
+        prometheus: test-pr-7214
     spec:
       serviceAccountName: prometheus
       affinity:
@@ -37,13 +37,13 @@ spec:
         image: docker.io/prominfra/prometheus-builder:master
         env:
         - name: PR_NUMBER
-          value: "{{ .PR_NUMBER }}"
+          value: "7214"
         - name: VOLUME_DIR
           value: "/prometheus-builder" # same as mountPath
         - name: GITHUB_ORG
-          value: "{{ .GITHUB_ORG }}"
+          value: "prometheus"
         - name: GITHUB_REPO
-          value: "{{ .GITHUB_REPO }}"
+          value: "prometheus"
         volumeMounts:
         - name: prometheus-executable
           mountPath: /prometheus-builder
@@ -63,7 +63,7 @@ spec:
           failureThreshold: 30
         command: ["/usr/bin/prometheus"]
         args: [
-          "--web.external-url=http://{{ .DOMAIN_NAME }}/{{ .PR_NUMBER }}/prometheus-pr",
+          "--web.external-url=http://{{ .DOMAIN_NAME }}/7214/prometheus-pr",
           "--storage.tsdb.path=/prometheus",
           "--web.console.libraries=/usr/bin/console_libraries",
           "--web.console.templates=/usr/bin/consoles",
@@ -91,17 +91,17 @@ spec:
         emptyDir: {}
       terminationGracePeriodSeconds: 300
       nodeSelector:
-        cloud.google.com/gke-nodepool: prometheus-{{ .PR_NUMBER }}
+        cloud.google.com/gke-nodepool: prometheus-7214
         isolation: prometheus
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: prometheus-test-pr-{{ .PR_NUMBER }}
-  namespace: prombench-{{ .PR_NUMBER }}
+  name: prometheus-test-pr-7214
+  namespace: prombench-7214
   labels:
     app: prometheus
-    prometheus: test-pr-{{ .PR_NUMBER }}
+    prometheus: test-pr-7214
 spec:
   ports:
   - name: prom-web
@@ -109,29 +109,29 @@ spec:
     targetPort: prom-web
   selector:
     app: prometheus
-    prometheus: test-pr-{{ .PR_NUMBER }}
+    prometheus: test-pr-7214
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prometheus-test-{{ normalise .RELEASE }}
-  namespace: prombench-{{ .PR_NUMBER }}
+  name: prometheus-test-v2.18.1
+  namespace: prombench-7214
   labels:
     app: prometheus
-    prometheus: test-{{ normalise .RELEASE }}
+    prometheus: test-v2.18.1
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: prometheus
-      prometheus: test-{{ normalise .RELEASE }}
+      prometheus: test-v2.18.1
   template:
     metadata:
-      namespace: prombench-{{ .PR_NUMBER }}
+      namespace: prombench-7214
       labels:
         app: prometheus
-        prometheus: test-{{ normalise .RELEASE }}
+        prometheus: test-v2.18.1
     spec:
       serviceAccountName: prometheus
       affinity:
@@ -148,11 +148,11 @@ spec:
         runAsUser: 0
       containers:
       - name: prometheus
-        image: quay.io/prometheus/prometheus:{{ .RELEASE }}
+        image: quay.io/prometheus/prometheus:v2.18.1
         imagePullPolicy: Always
         command: [ "/bin/prometheus" ]
         args: [
-          "--web.external-url=http://{{ .DOMAIN_NAME }}/{{ .PR_NUMBER }}/prometheus-release",
+          "--web.external-url=http://{{ .DOMAIN_NAME }}/7214/prometheus-release",
           "--storage.tsdb.path=/prometheus",
           "--web.console.libraries=/etc/prometheus/console_libraries",
           "--web.console.templates=/etc/prometheus/consoles",
@@ -178,17 +178,17 @@ spec:
           path: /mnt/disks/ssd0
       terminationGracePeriodSeconds: 300
       nodeSelector:
-        cloud.google.com/gke-nodepool: prometheus-{{ .PR_NUMBER }}
+        cloud.google.com/gke-nodepool: prometheus-7214
         isolation: prometheus
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: prometheus-test-{{ normalise .RELEASE }}
-  namespace: prombench-{{ .PR_NUMBER }}
+  name: prometheus-test-v2.18.1
+  namespace: prombench-7214
   labels:
     app: prometheus
-    prometheus: test-{{ normalise .RELEASE }}
+    prometheus: test-v2.18.1
 spec:
   ports:
   - name: prom-web
@@ -196,4 +196,4 @@ spec:
     targetPort: prom-web
   selector:
     app: prometheus
-    prometheus: test-{{ normalise .RELEASE }}
+    prometheus: test-v2.18.1
