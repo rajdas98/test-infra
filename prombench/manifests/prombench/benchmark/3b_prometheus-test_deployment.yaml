@@ -115,23 +115,23 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prometheus-test-v2.18.1
+  name: prometheus-test-v2-18-1
   namespace: prombench-7214
   labels:
     app: prometheus
-    prometheus: test-v2.18.1
+    prometheus: test-v2-18-1
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: prometheus
-      prometheus: test-v2.18.1
+      prometheus: test-v2-18-1
   template:
     metadata:
       namespace: prombench-7214
       labels:
         app: prometheus
-        prometheus: test-v2.18.1
+        prometheus: test-v2-18-1
     spec:
       serviceAccountName: prometheus
       affinity:
@@ -148,7 +148,7 @@ spec:
         runAsUser: 0
       containers:
       - name: prometheus
-        image: quay.io/prometheus/prometheus:v2.18.1
+        image: quay.io/prometheus/prometheus:v2-18-1
         imagePullPolicy: Always
         command: [ "/bin/prometheus" ]
         args: [
@@ -184,11 +184,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: prometheus-test-v2.18.1
+  name: prometheus-test-v2-18-1
   namespace: prombench-7214
   labels:
     app: prometheus
-    prometheus: test-v2.18.1
+    prometheus: test-v2-18-1
 spec:
   ports:
   - name: prom-web
@@ -196,4 +196,4 @@ spec:
     targetPort: prom-web
   selector:
     app: prometheus
-    prometheus: test-v2.18.1
+    prometheus: test-v2-18-1

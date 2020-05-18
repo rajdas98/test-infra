@@ -11,7 +11,7 @@ spec:
   - http:
       paths:
       - backend:
-          serviceName: prometheus-test-v2.18.1
+          serviceName: prometheus-test-v2-18-1
           servicePort: 80
         path: /7214/prometheus-release
       - backend:

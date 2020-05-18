@@ -55,6 +55,9 @@ spec:
       labels:
         app: fake-webserver
     spec:
+      # tolerations:
+      # - effect: NoSchedule
+      #   operator: Exists
       containers:
       - name: fake-webserver
         image: docker.io/prominfra/fake-webserver:master

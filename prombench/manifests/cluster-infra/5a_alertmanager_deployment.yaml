@@ -36,6 +36,9 @@ spec:
       labels:
         app: alertmanager
     spec:
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists
       serviceAccountName: prometheus
       containers:
       - image: quay.io/prometheus/alertmanager:v0.17.0

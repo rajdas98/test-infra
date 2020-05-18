@@ -6,13 +6,13 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: node-exporter-prometheus-test-v2.18.1
+  name: node-exporter-prometheus-test-v2-18-1
   namespace: prombench-7214
 spec:
   selector:
     matchLabels:
       app: node-exporter
-      node: test-v2.18.1
+      node: test-v2-18-1
   updateStrategy:
     rollingUpdate:
       maxUnavailable: 1
@@ -22,7 +22,7 @@ spec:
       namespace: prombench-7214
       labels:
         app: node-exporter
-        node: test-v2.18.1
+        node: test-v2-18-1
       name: node-exporter
     spec:
       affinity:
@@ -33,7 +33,7 @@ spec:
               - key: prometheus
                 operator: In
                 values:
-                - test-v2.18.1
+                - test-v2-18-1
             topologyKey: cloud.google.com/gke-nodepool
       securityContext:
         runAsNonRoot: true

@@ -57,6 +57,9 @@ spec:
         ports:
         - name: grafana-web
           containerPort: 3000
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists
       volumes:
       - name: grafana-persistent-storage
         emptyDir: {}

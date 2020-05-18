@@ -78,6 +78,9 @@ spec:
       promtail: pr-7214
   updateStrategy:
     type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
   template:
     metadata:
       namespace: prombench-7214
@@ -158,25 +161,28 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: promtail-v2.18.1
+  name: promtail-v2-18-1
   namespace: prombench-7214
   labels:
     app: promtail
-    promtail: v2.18.1
+    promtail: v2-18-1
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: promtail
-      promtail: v2.18.1
+      promtail: v2-18-1
   updateStrategy:
     type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
   template:
     metadata:
       namespace: prombench-7214
       labels:
         app: promtail
-        promtail: v2.18.1
+        promtail: v2-18-1
     spec:
       serviceAccountName: promtail
       affinity:
@@ -188,7 +194,7 @@ spec:
               - key: prometheus
                 operator: In
                 values:
-                - test-v2.18.1
+                - test-v2-18-1
       containers:
         - name: promtail
           image: grafana/promtail:1.4.1

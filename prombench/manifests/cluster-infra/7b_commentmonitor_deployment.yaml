@@ -40,6 +40,9 @@ spec:
         ports:
         - name: cm-port
           containerPort: 8080
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists
       volumes:
       - name: whsecret
         secret:

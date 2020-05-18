@@ -14,6 +14,9 @@ spec:
       labels:
         app: amgithubnotifier
     spec:
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists
       containers:
       - name: amgithubnotifier
         image: docker.io/prominfra/amgithubnotifier:master

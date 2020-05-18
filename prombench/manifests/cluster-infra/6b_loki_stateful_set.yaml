@@ -115,6 +115,9 @@ spec:
       nodeSelector:
         cloud.google.com/gke-nodepool: main-node
       terminationGracePeriodSeconds: 30
+      tolerations:
+      - effect: NoSchedule
+        operator: Exists
       volumes:
         - name: config
           configMap:
