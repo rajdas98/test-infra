@@ -293,6 +293,7 @@ func (c *K8s) clusterRoleBindingApply(resource runtime.Object) error {
 	case "v1":
 		client := c.clt.RbacV1().ClusterRoleBindings()
 		list, err := client.List(c.ctx, apiMetaV1.ListOptions{})
+
 		if err != nil {
 			return errors.Wrapf(err, "error listing resource : %v, name: %v", kind, req.Name)
 		}
@@ -558,6 +559,7 @@ func (c *K8s) customResourceApply(resource runtime.Object) error {
 	case "v1beta1":
 		client := c.ApiExtClient.ApiextensionsV1beta1().CustomResourceDefinitions()
 		list, err := client.List(c.ctx, apiMetaV1.ListOptions{})
+
 		if err != nil {
 			return errors.Wrapf(err, "error listing resource : %v, name: %v", kind, req.Name)
 		}

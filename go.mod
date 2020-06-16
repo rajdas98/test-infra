@@ -22,4 +22,5 @@ require (
 	k8s.io/apiextensions-apiserver v0.18.3
 	k8s.io/apimachinery v0.18.3
 	k8s.io/client-go v0.18.3
+	sigs.k8s.io/kind v0.8.1
 )
