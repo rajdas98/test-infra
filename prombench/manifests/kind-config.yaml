@@ -7,28 +7,25 @@ nodes:
     kind: JoinConfiguration
     nodeRegistration:
       kubeletExtraArgs:
-        node-name: main-node
+        node-labels: "node-name=main-node"
 - role: worker
   kubeadmConfigPatches:
     - |
       kind: JoinConfiguration
       nodeRegistration:
         kubeletExtraArgs:
-          isolation: prometheus
-          node-name: prometheus-7456
+          node-labels: "isolation=prometheus,node-name=prometheus-{{ .PR_NUMBER }}"
 - role: worker
   kubeadmConfigPatches:
     - |
       kind: JoinConfiguration
       nodeRegistration:
         kubeletExtraArgs:
-          isolation: prometheus
-          node-name: prometheus-7456
+          node-labels: "isolation=prometheus,node-name=prometheus-{{ .PR_NUMBER }}"
 - role: worker
   kubeadmConfigPatches:
     - |
       kind: JoinConfiguration
       nodeRegistration:
         kubeletExtraArgs:
-          isolation: none
-          node-name: nodes-7456
+          node-labels: "isolation=none,node-name=nodes-{{ .PR_NUMBER }}"
