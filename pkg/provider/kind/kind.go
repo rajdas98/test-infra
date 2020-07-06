@@ -163,12 +163,13 @@ func (c *KIND) NewK8sProvider(*kingpin.ParseContext) error {
 	if err != nil {
 		log.Fatal("k8s provider error", err)
 	}
+	fmt.Println("Creating k8s provider successfull")
 	return nil
-
 }
 
 func (c *KIND) ResourceApply(*kingpin.ParseContext) error {
 	//fmt.Println(c.k8sResources)
+	// Set the env
 	fmt.Println("Applying resources")
 	if err := c.k8sProvider.ResourceApply(c.k8sResources); err != nil {
 		log.Fatal("error while applying a resource err:", err)

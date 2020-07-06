@@ -42,9 +42,12 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c773c60-ab87-430f-bb44-d9c394059db1" name="Default Changelist" comment="">
+    <list default="true" id="b68406cc-b647-4d6b-892e-5086eb5e9c78" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/provider/kind/kind.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/provider/kind/kind.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prombench/manifests/cluster-infra/2_ingress-nginx-controller.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/prombench/manifests/cluster-infra/2_ingress-nginx-controller.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/prombench/manifests/kind-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/prombench/manifests/kind-config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prombench/manifests/prombench/benchmark/6_loadgen.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/prombench/manifests/prombench/benchmark/6_loadgen.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
