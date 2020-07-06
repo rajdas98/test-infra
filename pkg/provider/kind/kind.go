@@ -39,6 +39,7 @@ type KIND struct {
 
 	// The k8s provider used when we work with the manifest files.
 	k8sProvider *k8sProvider.K8s
+	// The kindprovider used to instantiate a new provider.
 	kindProvider *cluster.Provider
 	// DeploymentFiles files provided from the cli.
 	DeploymentFiles []string
@@ -54,38 +55,31 @@ type KIND struct {
 }
 
 func New() *KIND {
-
 	return &KIND{
 		DeploymentVars: make(map[string]string),
 		kindProvider: cluster.NewProvider(
 			cluster.ProviderWithLogger(cmd.NewLogger()),
 		),
 		ctx: context.Background(),
-
 	}
 }
 
-// GKEDeploymentsParse parses the cluster/nodepool deployment files and saves the result as bytes grouped by the filename.
+// KINDDeploymentsParse parses the environment/kind deployment files and saves the result as bytes grouped by the filename.
 // Any variables passed to the cli will be replaced in the resources files following the golang text template format.
 func (c *KIND) KINDDeploymentsParse(*kingpin.ParseContext) error {
-	//c.setProjectID()
-	//
 	deploymentResource, err := provider.DeploymentsParse(c.DeploymentFiles, c.DeploymentVars)
 	if err != nil {
 		log.Fatalf("Couldn't parse deployment files: %v", err)
 	}
-	//fmt.Println(deploymentResource)
 	c.kindResources = deploymentResource
 	return nil
 }
 
 func (c *KIND) K8SDeploymentsParse(*kingpin.ParseContext) error {
-
 	deploymentResource, err := provider.DeploymentsParse(c.DeploymentFiles, c.DeploymentVars)
 	if err != nil {
 		log.Fatalf("Couldn't parse deployment files: %v", err)
 	}
-
 	for _, deployment := range deploymentResource {
 
 		decode := scheme.Codecs.UniversalDeserializer().Decode
@@ -116,15 +110,11 @@ func (c *KIND) K8SDeploymentsParse(*kingpin.ParseContext) error {
 
 // ClusterCreate create a new cluster or applies changes to an existing cluster.
 func (c *KIND) ClusterCreate(*kingpin.ParseContext) error {
-
 	clusterName, ok := c.DeploymentVars["CLUSTER_NAME"]
 	if !ok {
 		return fmt.Errorf("missing required CLUSTER_NAME variable")
 	}
-	fmt.Println(clusterName)
-	fmt.Println(c.DeploymentVars["PR_NUMBER"])
 	for _, deployment := range c.kindResources {
-		fmt.Println(deployment.Content)
 		CreateWithConfigFile := cluster.CreateWithRawConfig(deployment.Content)
 
 		err := c.kindProvider.Create(clusterName, CreateWithConfigFile)
@@ -132,7 +122,6 @@ func (c *KIND) ClusterCreate(*kingpin.ParseContext) error {
 			log.Fatalf("creating cluster err:%v", err)
 		}
 	}
-
 	return nil
 }
 
@@ -152,8 +141,6 @@ func (c *KIND) ClusterDelete(*kingpin.ParseContext) error {
 
 // NewK8sProvider sets the k8s provider used for deploying k8s manifests.
 func (c *KIND) NewK8sProvider(*kingpin.ParseContext) error {
-	fmt.Println("Applying resources")
-
 	var err error
 	apiConfig, err := clientcmd.LoadFromFile("/home/raj/.kube/config")
 	if err != nil {
@@ -167,17 +154,15 @@ func (c *KIND) NewK8sProvider(*kingpin.ParseContext) error {
 	return nil
 }
 
+// ResourceApply calls k8s.ResourceApply to apply the k8s objects in the manifest files.
 func (c *KIND) ResourceApply(*kingpin.ParseContext) error {
-	//fmt.Println(c.k8sResources)
-	// Set the env
-	fmt.Println("Applying resources")
 	if err := c.k8sProvider.ResourceApply(c.k8sResources); err != nil {
 		log.Fatal("error while applying a resource err:", err)
 	}
 	return nil
 }
-//
-//// ResourceDelete calls k8s.ResourceDelete to apply the k8s objects in the manifest files.
+
+// ResourceDelete calls k8s.ResourceDelete to apply the k8s objects in the manifest files.
 func (c *KIND) ResourceDelete(*kingpin.ParseContext) error {
 	if err := c.k8sProvider.ResourceDelete(c.k8sResources); err != nil {
 		log.Fatal("error while deleting objects from a manifest file err:", err)
